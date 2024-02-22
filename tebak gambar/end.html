@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selesai</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .result-container {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .result-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #4caf50; /* Warna hijau */
+        }
+
+        .result-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        .success {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        .failure {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="result-container">
+            <h1>Permainan Selesai</h1>
+            <div class="result-icon">&#10004;</div>
+            <div class="result-message">
+                <p>Anda memiliki <strong id="correctAnswers">0 jawaban benar</strong> dan <strong id="wrongAnswers">0 jawaban salah</strong>.</p>
+            </div>
+            <div class="button-container">
+                <button class="success" onclick="restartGame()">Ulangi Game</button>
+                <button class="failure" onclick="exitGame()">Keluar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Contoh pengaturan hasil jawaban (misalnya, dari permainan sebelumnya)
+        var correctAnswersCount = parseInt(getParameterByName('correctAnswersCount')) || 6;
+        var wrongAnswersCount = parseInt(getParameterByName('wrongAnswersCount')) || 1;
+
+        // Menampilkan hasil jawaban pada elemen HTML
+        document.getElementById('correctAnswers').innerText = correctAnswersCount + ' jawaban benar';
+        document.getElementById('wrongAnswers').innerText = wrongAnswersCount + ' jawaban salah';
+
+        function restartGame() {
+            // Gantilah URL dengan halaman pertama permainan
+            window.location.href = "soal1.html";
+        }
+
+        function exitGame() {
+            // Tambahkan logika untuk mengakhiri permainan atau kembali ke halaman utama
+            window.location.href = "halutama.html";
+        }
+
+        // Fungsi untuk mendapatkan nilai dari parameter URL
+        function getParameterByName(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+    </script>
+</body>
+</html>

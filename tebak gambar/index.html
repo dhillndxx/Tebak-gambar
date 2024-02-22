@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak Gambar Tokoh Bersejarah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-container">
+        <div class="container">
+            <div class="image-container">
+                <img src="asset/background-image.jpg.png" alt="Gambar Tokoh Bersejarah">
+            </div>
+            <div class="form-container">
+                <h1>Selamat Datang di Game Tebak Gambar Tokoh Bersejarah</h1>
+                <p>Silakan masuk untuk memulai permainan.</p>
+                
+                <form id="loginForm" onsubmit="redirectToGamePage(); return false;">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <button type="submit">Masuk</button>
+                </form>
+                
+                <p>Belum punya akun? <a href="register.html">Daftar di sini</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function redirectToGamePage() {
+            // Periksa apakah kedua kolom input telah diisi
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username && password) {
+                // Jika sudah terisi, redirect ke soal1.html
+                window.location.href = "halutama.html";
+            } else {
+                // Jika belum terisi, berikan notifikasi atau handle sesuai kebutuhan
+                alert("Mohon isi kedua kolom untuk melanjutkan.");
+            }
+        }
+    </script>
+</body>
+</html>

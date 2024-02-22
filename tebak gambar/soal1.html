@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soal 1</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+        }
+
+        .question-container {
+            position: relative;
+        }
+
+        img {
+            max-width: 50%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #nextButton {
+            background-color: #3498db;
+        }
+
+        #exitButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #exitButton:hover {
+            background-color: #c0392b;
+        }
+
+        #resultMessage {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tebak Gambar Tokoh Bersejarah</h1>
+        
+        <div class="question-container">
+            <img src="asset/gambar-soekarno.jpg.jpg" alt="Gambar Tokoh">
+            <button id="exitButton" onclick="goToHomePage()">X</button>
+            <form onsubmit="checkAnswer(); return false;">
+                <label for="answer">Siapakah tokoh pada gambar ini?</label>
+                <input type="text" id="answer" name="answer" required>
+                <button type="submit">Cek Jawaban</button>
+                <button id="nextButton" onclick="nextQuestion()">Next</button>
+            </form>
+            <div id="resultMessage"></div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            // Simpan jawaban yang benar di sini
+            var correctAnswer = "Ir. Soekarno";
+
+            // Ambil jawaban dari pengguna
+            var userAnswer = document.getElementById("answer").value;
+
+            // Periksa apakah jawaban benar
+            if (userAnswer && userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+                document.getElementById("resultMessage").innerHTML = "Jawaban Anda benar!";
+                document.getElementById("resultMessage").style.color = "green";
+            } else {
+                document.getElementById("resultMessage").innerHTML = "Jawaban Anda salah. Coba lagi!";
+                document.getElementById("resultMessage").style.color = "red";
+            }
+        }
+
+        function nextQuestion() {
+            // Gantilah URL dengan halaman soal berikutnya
+            window.location.href = "soal2.html";
+        }
+
+        function goToHomePage() {
+            // Kembali ke halaman utama
+            window.location.href = "halutama.html";
+        }
+
+        function moveToNextQuestion() {
+                // Fungsi ini akan memindahkan ke pertanyaan berikutnya
+                // dan akan menyertakan skor yang sudah ada.
+                var currentScore = getParameterByName('score') || 0;
+                var nextQuestionIndex = parseInt(getParameterByName('questionIndex')) + 7 || 7;
+
+                // Redirect ke halaman pertanyaan berikutnya
+                window.location.href = "soal" + nextQuestionIndex + ".html?score=" + currentScore + "&questionIndex=" + nextQuestionIndex;
+            }
+
+            // Fungsi untuk mendapatkan nilai dari parameter URL
+            function getParameterByName(name) {
+                var url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+    </script>
+</body>
+</html>
